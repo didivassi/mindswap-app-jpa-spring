@@ -24,6 +24,9 @@ public class Bootcamp {
     @ManyToMany(mappedBy = "bootcamps")
     private List<Teacher> teacherList;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "edition")
+    private List<Workshop> workshopList;
+
     public Bootcamp() {
     }
 
@@ -55,10 +58,10 @@ public class Bootcamp {
         return studentList;
     }*/
 
-     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    /*@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public List<Teacher> getTeacherList() {
         return teacherList;
-    }
+    }*/
 
     @Override
     public String toString() {

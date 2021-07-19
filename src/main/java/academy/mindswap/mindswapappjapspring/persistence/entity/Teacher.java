@@ -1,5 +1,7 @@
 package academy.mindswap.mindswapappjapspring.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,6 +21,8 @@ public class Teacher {
             inverseJoinColumns = @JoinColumn(name = "bootcamp_id"))
     List<Bootcamp> bootcamps;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
+    private List<Workshop> workshopList;
 
     public Long getId() {
         return id;
@@ -29,5 +33,8 @@ public class Teacher {
     }
 
 
-
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    public List<Workshop> getWorkshopList() {
+        return workshopList;
+    }
 }
